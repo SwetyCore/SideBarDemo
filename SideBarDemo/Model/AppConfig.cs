@@ -8,7 +8,7 @@ namespace SideBarDemo.Model
 {
     public class AppConfig
     {
-        Dictionary<string,Guid> instances = new Dictionary<string,Guid>();
+        public Dictionary<Guid,string> instances = new Dictionary<Guid, string>();
 
 
     }

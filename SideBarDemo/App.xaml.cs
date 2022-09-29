@@ -1,4 +1,5 @@
-﻿using PluginSdk;
+﻿using Newtonsoft.Json;
+using PluginSdk;
 using SideBarDemo.Common;
 using System;
 using System.Collections.Generic;
@@ -25,11 +26,21 @@ namespace SideBarDemo
         public static ObservableCollection<WidgetControl> widgets=new ObservableCollection<WidgetControl>();
 
 
-        
+        public static Model.AppConfig? appConfig;
 
+        const string CONFIG_FILE = "config.json";
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+
+            if (File.Exists(CONFIG_FILE))
+            {
+                appConfig = JsonConvert.DeserializeObject<Model.AppConfig>(File.ReadAllText(CONFIG_FILE))??new Model.AppConfig();
+            }
+            else
+            {
+                appConfig = new Model.AppConfig();
+            }
+
 
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
 
@@ -62,8 +73,27 @@ namespace SideBarDemo
                 }
             }
 
+            foreach (var item in appConfig.instances)
+            {
+                foreach (var ci in cis)
+                {
+                    if (item.Value == ci.name)
+                    {
+                        widgets.Add(Activator.CreateInstance(ci.mainView,item.Key) as WidgetControl);
+                    }
+                }
+            }
+
+            base.OnStartup(e);
+
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            File.WriteAllText(CONFIG_FILE, JsonConvert.SerializeObject(appConfig));
+        }
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             //MessageBox.Show("我们很抱歉，当前应用程序遇到一些问题，该操作已经终止，请进行重试，如果问题继续存在，请联系管理员.", "意外的操作", MessageBoxButton.OK, MessageBoxImage.Information);//这里通常需要给用户一些较为友好的提示，并且后续可能的操作

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PluginSdk;
+using SideBarDemo.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,7 +38,9 @@ namespace SideBarDemo.ViewModel
 			var wc = c as WidgetControl;
 			wc.OnDisabled();
 			widgets.Remove(wc);
-		}
+            App.appConfig.instances.Remove(wc.PluginGuid);
+
+        }
 
         [RelayCommand]
         private void AddCard()
@@ -46,9 +49,12 @@ namespace SideBarDemo.ViewModel
 
             if (w != null)
 			{
-				var wc = (WidgetControl)Activator.CreateInstance(w.mainView, System.Guid.NewGuid());
+				var g = System.Guid.NewGuid();
+
+                var wc = (WidgetControl)Activator.CreateInstance(w.mainView,g );
 				wc.OnEnabled();
                 widgets.Add(wc);
+				App.appConfig.instances.Add(g,w.name);
 			}
         }
 
