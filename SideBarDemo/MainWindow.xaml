@@ -1,0 +1,176 @@
+﻿<Window
+    x:Class="SideBarDemo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:control="clr-namespace:PluginSdk.Control;assembly=PluginSdk"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:helper="clr-namespace:DockBar.Helper"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:SideBarDemo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:SideBarDemo.ViewModel"
+    Name="root"
+    Title="MainWindow"
+    Width="12"
+    Height="450"
+    d:DataContext="{d:DesignInstance Type=viewmodel:SideBar}"
+    d:Width="300"
+    helper:DesktopAppBar.AppBar="None"
+    Background="Transparent"
+    Deactivated="root_Deactivated"
+    Left="-4"
+    MouseEnter="root_MouseEnter"
+    ResizeMode="NoResize"
+    Top="0"
+    Topmost="True"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard x:Key="slide_in">
+            <DoubleAnimation
+                Storyboard.TargetName="root"
+                Storyboard.TargetProperty="Width"
+                To="632"
+                Duration="00:00:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="container"
+                Storyboard.TargetProperty="Opacity"
+                To="1"
+                Duration="00:00:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="slide_out">
+            <DoubleAnimation
+                Storyboard.TargetName="root"
+                Storyboard.TargetProperty="Width"
+                To="12"
+                Duration="00:00:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="container"
+                Storyboard.TargetProperty="Opacity"
+                To="0"
+                Duration="00:00:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseEnter">
+            <!--<i:ChangePropertyAction
+                PropertyName="Width"
+                TargetName="root"
+                Value="632" />-->
+            <i:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource slide_in}" />
+
+        </i:EventTrigger>
+        <!--<i:EventTrigger EventName="Deactivated">
+
+            <i:ChangePropertyAction
+                PropertyName="Width"
+                TargetName="root"
+                Value="12" />
+
+            <i:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource slide_out}" />
+
+        </i:EventTrigger>-->
+    </i:Interaction.Triggers>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
+    <Grid HorizontalAlignment="Right">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Panel.ZIndex="10"
+            VerticalScrollBarVisibility="Hidden">
+            <StackPanel
+                Margin="0,10,10,10"
+                VerticalAlignment="Top"
+                hc:Growl.GrowlParent="True" />
+        </ScrollViewer>
+        <Border
+            Name="container"
+            Grid.Column="1"
+            Margin="4"
+            Padding="4"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="8">
+            <Border.Background>
+                <SolidColorBrush Opacity="0.4" Color="{DynamicResource RegionColor}" />
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid Margin="8">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="32"
+                        Text="12:00" />
+
+                    <Border HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                x:Name="pin_btn"
+                                Height="30"
+                                Click="Button_Click"
+                                Content="&#xF039;"
+                                FontFamily="{StaticResource RemixIcon}"
+                                FontSize="16"
+                                Style="{StaticResource ButtonGroupItemHorizontalFirst}" />
+                            <Button
+                                Height="30"
+                                Command="{Binding OpenSettingCommand}"
+                                Content="&#xF0ED;"
+                                FontFamily="{StaticResource RemixIcon}"
+                                FontSize="16"
+                                Style="{StaticResource ButtonGroupItemHorizontalLast}" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <ItemsControl
+                    x:Name="LBoxSort"
+                    Grid.Row="1"
+                    MinWidth="600"
+                    AllowDrop="True"
+                    ItemsSource="{Binding widgets}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <control:TilePanel
+                                TileCount="4"
+                                TileHeight="150"
+                                TileMargin="2"
+                                TileWidth="150" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Grid>
+            <!--<ScrollViewer>-->
+
+            <!--</ScrollViewer>-->
+
+        </Border>
+    </Grid>
+</Window>
