@@ -79,7 +79,9 @@ namespace SideBarDemo
                 {
                     if (item.Value == ci.name)
                     {
-                        widgets.Add(Activator.CreateInstance(ci.mainView,item.Key) as WidgetControl);
+                        var wc = Activator.CreateInstance(ci.mainView, item.Key) as WidgetControl;
+                        widgets.Add(wc);
+                        wc.OnEnabled();
                     }
                 }
             }

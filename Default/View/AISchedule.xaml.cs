@@ -27,7 +27,7 @@ namespace Default.View
     /// </summary>
     public partial class AISchedule : WidgetControl
     {
-        public override cardInfo ci => Cards.Test;
+        public override cardInfo ci => Cards.AISChedule;
 
         public AISchedule(Guid g)
         {
