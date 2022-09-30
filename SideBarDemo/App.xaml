@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <FontFamily x:Key="RemixIcon">Resources/Fonts/#remixicon</FontFamily>
+            <FontFamily x:Key="RemixIcon">/SideBarDemo;component/Resources/Fonts/#remixicon</FontFamily>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />

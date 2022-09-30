@@ -159,10 +159,10 @@
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <control:TilePanel
-                                TileCount="4"
-                                TileHeight="150"
-                                TileMargin="2"
-                                TileWidth="150" />
+                                TileCount="8"
+                                TileHeight="70"
+                                TileMargin="4"
+                                TileWidth="70" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
@@ -172,5 +172,21 @@
             <!--</ScrollViewer>-->
 
         </Border>
+        <hc:NotifyIcon
+            x:Name="trayIcon"
+            Icon="Resources/StartIcon.ico"
+            IsBlink="False"
+            Text="SideBar正在运行"
+            Visibility="Visible">
+            <hc:NotifyIcon.ContextContent>
+                <hc:Card Width="140" Padding="8">
+                    <StackPanel>
+
+                        <MenuItem Header="关于" />
+                        <MenuItem Click="MenuItem_Click" Header="退出程序" />
+                    </StackPanel>
+                </hc:Card>
+            </hc:NotifyIcon.ContextContent>
+        </hc:NotifyIcon>
     </Grid>
 </Window>

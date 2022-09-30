@@ -47,14 +47,16 @@ namespace SideBarDemo.ViewModel
         {
 			var w = Selected_CI;
 
+
+
             if (w != null)
 			{
 				var g = System.Guid.NewGuid();
-
-                var wc = (WidgetControl)Activator.CreateInstance(w.mainView,g );
-				wc.OnEnabled();
+                var wid = w.mainView.FullName;
+				WidgetControl? wc = (WidgetControl)Activator.CreateInstance(w.mainView,g );
+				wc?.OnEnabled();
                 widgets.Add(wc);
-				App.appConfig.instances.Add(g,w.name);
+				App.appConfig?.instances.Add(g,wid);
 			}
         }
 

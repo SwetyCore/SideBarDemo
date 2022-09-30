@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -35,7 +37,10 @@ namespace SideBarDemo
             base.OnSourceInitialized(e);
             Height = SystemParameters.WorkArea.Height;
 
-            vm=new ViewModel.SideBar();
+            IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
+            SetWindowLong(hWnd, (-20), 0x80);
+
+            vm =new ViewModel.SideBar();
             
             DataContext = vm;
         }
@@ -72,6 +77,20 @@ namespace SideBarDemo
                 slide_out?.Begin();
             }
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            trayIcon.Visibility = Visibility.Collapsed;
+            Environment.Exit(0);
+        }
+
+
+
+
+
+
+        [DllImport("user32.dll")]
+        static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
     }
 
 

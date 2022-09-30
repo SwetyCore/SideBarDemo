@@ -1,3 +1,4 @@
+using PluginSdk.Control;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace PluginSdk
 {
     public abstract class WidgetControl : UserControl
     {
-        public float w_width { get; set; }
-        public float w_height { get; set; }
+        //public float w_width { get; set; }
+        //public float w_height { get; set; }
 
         public Guid PluginGuid { get; set; }
 
@@ -19,6 +20,12 @@ namespace PluginSdk
         public abstract void OnDisabled();
 
         public abstract cardInfo ci { get; }
+
+        public void ResizeCard(int width_pix,int height_pix)
+        {
+            TilePanel.SetHeightPix(this, height_pix);
+            TilePanel.SetWidthPix(this, width_pix);
+        }
 
         public string GetPluginConfigFilePath()
         {

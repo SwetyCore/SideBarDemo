@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Resources\Fonts\remixicon.ttf" />
+    <None Remove="Resources\StartIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\Fonts\remixicon.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartIcon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

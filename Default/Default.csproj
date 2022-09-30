@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\schedule-logo.png">
+    <Resource Include="Resources\schedule-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1343.22" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,9 @@
     <Compile Update="View\AISchedule.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\BiliHelper.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\TestCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -44,6 +48,10 @@
 
   <ItemGroup>
     <Page Update="View\AISchedule.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\BiliHelper.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

@@ -63,6 +63,11 @@ namespace Default.ViewModel
             }
         }
 
+        [ObservableProperty]
+        private string tableTip;
+
+
+
 
         public async void LoadTable()
         {
@@ -78,13 +83,21 @@ namespace Default.ViewModel
 
                 CI = tr.data.courses.Where(x => IsIn(x.weeks.Split(','), week) && x.day == Week2Int(targetTime.DayOfWeek)).ToList();
 
-
+                if (CI.Count==0)
+                {
+                    TableTip = "今日无课";
+                }
+                else
+                {
+                    TableTip = "";
+                }
 
             }
             catch (Exception ex)
             {
 
                 Growl.Error(ex.Message);
+                TableTip = "未设置课表";
 
             }
 

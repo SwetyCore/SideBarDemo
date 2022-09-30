@@ -77,7 +77,11 @@ namespace SideBarDemo
             {
                 foreach (var ci in cis)
                 {
-                    if (item.Value == ci.name)
+                    //插件标识
+                    var wid = ci.mainView.FullName;
+
+
+                    if (item.Value == wid)
                     {
                         var wc = Activator.CreateInstance(ci.mainView, item.Key) as WidgetControl;
                         widgets.Add(wc);
