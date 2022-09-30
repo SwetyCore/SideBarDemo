@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PluginSdk;
+using PluginSdk.Message;
 using SideBarDemo.Common;
 using System;
 using System.Collections.Generic;
@@ -96,9 +97,13 @@ namespace SideBarDemo
 
         protected override void OnExit(ExitEventArgs e)
         {
+            Messages.SendOnExitMsg();
+
             base.OnExit(e);
 
             File.WriteAllText(CONFIG_FILE, JsonConvert.SerializeObject(appConfig));
+
+
         }
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {

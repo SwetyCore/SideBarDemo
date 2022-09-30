@@ -81,7 +81,7 @@ namespace SideBarDemo
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             trayIcon.Visibility = Visibility.Collapsed;
-            Environment.Exit(0);
+            App.Current.Shutdown();
         }
 
 

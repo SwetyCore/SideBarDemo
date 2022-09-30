@@ -30,7 +30,12 @@ namespace PluginSdk
         public string GetPluginConfigFilePath()
         {
             var abl = Path.GetDirectoryName(System.Reflection.Assembly.GetCallingAssembly().Location);
-            return Path.Combine(abl, $"{PluginGuid}.json");
+            var ret = Path.Combine(abl, "Configs", $"{PluginGuid}.json");
+            if (!Directory.Exists(Path.GetDirectoryName(ret)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(ret));
+            }
+            return ret;
         }
 
 

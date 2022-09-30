@@ -23,7 +23,10 @@
         </ResourceDictionary>
     </sdk:WidgetControl.Resources>
     <hc:Card x:Name="card" hc:BorderElement.CornerRadius="8">
-        <Border CornerRadius="8">
+        <Border
+            CornerRadius="8"
+            RenderOptions.BitmapScalingMode="HighQuality"
+            SnapsToDevicePixels="True">
             <Border.Background>
                 <ImageBrush ImageSource="{Binding Img}" Stretch="UniformToFill" />
             </Border.Background>

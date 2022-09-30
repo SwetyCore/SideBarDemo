@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using HandyControl.Controls;
 using Microsoft.Win32;
+using PluginSdk.Message;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,13 +15,15 @@ using System.Windows.Media.Imaging;
 
 namespace Default.ViewModel
 {
-    [ObservableObject]
-    partial class Gallery
+    partial class Gallery : ObservableRecipient,IRecipient<OnExitMsg>
     {
         Default.View.Gallery view;
+        public Default.Model.Gallery.Config cfg;
         public Gallery(Default.View.Gallery view)
         {
             this.view = view;
+
+            cfg=Model.Gallery.Config.Load(view.GetPluginConfigFilePath());
         }
 
         public List<string> Files = new List<string>();
@@ -45,16 +49,21 @@ namespace Default.ViewModel
             if (ret == true)
             {
                 var folder = Path.GetDirectoryName(dl.FileName);
-                InitFolder(folder);
+                cfg.folder = folder;
+                InitFolder();
 
             }
 
         }
 
-        public void InitFolder(string folder)
+        public void InitFolder()
         {
             Files = new List<string>();
-            var files = Directory.GetFiles(folder);
+            if (cfg.folder==null)
+            {
+                return;
+            }
+            var files = Directory.GetFiles(cfg.folder);
             foreach (var item in files)
             {
                 var ext = Path.GetExtension(item).ToLower();
@@ -98,6 +107,11 @@ namespace Default.ViewModel
                 }
             }
 
+        }
+
+        public void Receive(OnExitMsg message)
+        {
+            cfg.Save(view.GetPluginConfigFilePath());
         }
     }
 }
