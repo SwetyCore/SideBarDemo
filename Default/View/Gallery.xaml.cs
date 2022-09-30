@@ -21,6 +21,7 @@ namespace Default.View
     public partial class Gallery : WidgetControl
     {
         public override cardInfo ci => Cards.Gallery;
+        ViewModel.Gallery vm;
         public Gallery(Guid g)
         {
             InitializeComponent();
@@ -29,6 +30,10 @@ namespace Default.View
 
         public override void OnEnabled()
         {
+            vm = new ViewModel.Gallery(this);
+
+            DataContext = vm;
+            
             //throw new NotImplementedException();
         }
 

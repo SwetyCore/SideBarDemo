@@ -8,8 +8,10 @@
     xmlns:local="clr-namespace:Default.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="clr-namespace:PluginSdk;assembly=PluginSdk"
+    xmlns:viewmodel="clr-namespace:Default.ViewModel"
     control:TilePanel.HeightPix="2"
     control:TilePanel.WidthPix="2"
+    d:DataContext="{d:DesignInstance Type=viewmodel:Gallery}"
     d:DesignHeight="200"
     d:DesignWidth="200"
     mc:Ignorable="d">
@@ -21,9 +23,9 @@
         </ResourceDictionary>
     </sdk:WidgetControl.Resources>
     <hc:Card x:Name="card" hc:BorderElement.CornerRadius="8">
-        <Border>
+        <Border CornerRadius="8">
             <Border.Background>
-                <ImageBrush ImageSource="C:\Users\SwetyCore\Desktop\bg.jpg" />
+                <ImageBrush ImageSource="{Binding Img}" Stretch="UniformToFill" />
             </Border.Background>
             <Grid>
                 <Grid.ContextMenu>
@@ -38,19 +40,29 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Grid Margin="4">
-                    <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Border CornerRadius="8 8 0 0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1.3">
+                                <GradientStop Offset="0" Color="{DynamicResource RegionColor}" />
+                                <GradientStop Offset="1" Color="Transparent" />
+                            </LinearGradientBrush>
+                        </Border.Background>
 
-                        <Button
-                            Height="20"
-                            Padding="4"
-                            BorderThickness="0"
-                            Command="{Binding OpenSettingCommand}"
-                            Content="&#xEDA4;"
-                            FontFamily="/SideBarDemo;component/Resources/Fonts/#remixicon"
-                            FontSize="16" />
-                        <TextBlock VerticalAlignment="Center" Text="相册" />
-                    </StackPanel>
+                        <StackPanel Margin="4" Orientation="Horizontal">
+
+                            <Button
+                                Height="20"
+                                Padding="4"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding SetTargetFolderCommand}"
+                                Content="&#xEDA4;"
+                                FontFamily="/SideBarDemo;component/Resources/Fonts/#remixicon"
+                                FontSize="16" />
+                            <TextBlock VerticalAlignment="Center" Text="相册" />
+                        </StackPanel>
+                    </Border>
                 </Grid>
 
             </Grid>
