@@ -37,6 +37,21 @@ namespace Default.ViewModel
 
             //Login();
         }
+
+        [RelayCommand]
+        private void DoneTask(object o)
+        {
+            Task.Run(async() =>
+            {
+
+                var todoTask = o as TodoTask;
+                await graphClient.Me.Todo.Lists[selectedTaskListId].Tasks[todoTask.Id]
+                    .Request()
+                    .UpdateAsync(todoTask);
+
+                //GetTasksAsync(selectedTaskListId);
+            });
+        }
         
 
         private void CreateCilent()
