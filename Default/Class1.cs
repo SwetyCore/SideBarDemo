@@ -34,6 +34,12 @@ namespace Default
             description = "ÊÇÏà²áÀ²",
             mainView = typeof(View.Gallery)
         };
+        internal static cardInfo MsToDo = new cardInfo()
+        {
+            name = "Microsoft ToDo",
+            description = "Î¢Èí´ý°ì¿¨Æ¬",
+            mainView = typeof(View.MsToDo)
+        };
     }
 
 
@@ -52,6 +58,7 @@ namespace Default
             Cards.AISChedule,
             Cards.BiliHelper,
             Cards.Gallery,
+            Cards.MsToDo,
         };
 
 

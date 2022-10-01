@@ -10,9 +10,17 @@
 
   <ItemGroup>
     <None Remove="Resources\schedule-logo.png" />
+    <None Remove="Resources\todo-blank.png" />
+    <None Remove="Resources\todo-logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\todo-blank.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\todo-logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\schedule-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -23,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.7.0" />
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
+    <PackageReference Include="Microsoft.Graph" Version="4.42.0" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1343.22" />
   </ItemGroup>
 
@@ -41,6 +51,9 @@
     <Compile Update="View\BiliHelper.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\MsToDo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\TestCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -54,6 +67,11 @@
     <Page Update="View\BiliHelper.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MsToDo.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="View\TestCard.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
