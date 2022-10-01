@@ -17,6 +17,7 @@
     mc:Ignorable="d">
     <sdk:WidgetControl.Resources>
         <ResourceDictionary>
+            <convertor:BiliLevel2Img x:Key="BiliLevel2Img" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/index.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -48,11 +49,6 @@
             </Border>
 
             <Grid Margin="8" Visibility="{Binding Loading, Converter={StaticResource Boolean2VisibilityReConverter}}">
-                <!--<Border Height="70" CornerRadius="8 8 0 0">
-                    <Border.Background>
-                        <ImageBrush ImageSource="{Binding Card.data.space.s_img}" />
-                    </Border.Background>
-                </Border>-->
 
                 <StackPanel Orientation="Horizontal">
                     <Border
@@ -73,21 +69,21 @@
                         Margin="10,0"
                         VerticalAlignment="Bottom"
                         TextOptions.TextFormattingMode="Display">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 HorizontalAlignment="Left"
                                 FontSize="16"
                                 FontWeight="Bold"
                                 Foreground="White"
                                 Text="{Binding Card.data.card.name}" />
-                            <!--<StackPanel
-                                    Margin="8,2"
-                                    VerticalAlignment="Bottom"
-                                    Orientation="Horizontal">
-                                    <TextBlock Text="lv." />
-                                    <TextBlock Text="{Binding Card.data.card.level_info.current_level}" />
-                                </StackPanel>-->
-                            <!--<svgc:SvgViewbox Margin="10 0 0 0" Height="16"  Source="../../Assets/Images/lv5.svg"></svgc:SvgViewbox>-->
+                            <StackPanel
+                                Margin="8,2"
+                                VerticalAlignment="Bottom"
+                                Orientation="Horizontal">
+                                <Image Width="24" Source="{Binding Card.data.card.level_info.current_level, Converter={StaticResource BiliLevel2Img}, FallbackValue=/Default;component/Resources/BiliHelper/lv0.png}" />
+
+                                <!--<Image Width="24" Source="/Default;component/Resources/BiliHelper/lv0.png"/>-->
+                            </StackPanel>
 
 
                         </StackPanel>
@@ -158,6 +154,7 @@
             <Border
                 x:Name="mask"
                 Grid.RowSpan="2"
+                d:Visibility="Collapsed"
                 CornerRadius="10"
                 Visibility="{Binding Loading, Converter={StaticResource Boolean2VisibilityConverter}}">
                 <Border.Background>

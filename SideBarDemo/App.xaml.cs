@@ -5,11 +5,7 @@ using SideBarDemo.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SideBarDemo
@@ -19,12 +15,12 @@ namespace SideBarDemo
     /// </summary>
     public partial class App : Application
     {
-        public static IEnumerable<IPlugin> Plugins  = new ObservableCollection<IPlugin>();
+        public static IEnumerable<IPlugin> Plugins = new ObservableCollection<IPlugin>();
 
         public static ObservableCollection<cardInfo> cis = new ObservableCollection<cardInfo>();
 
 
-        public static ObservableCollection<WidgetControl> widgets=new ObservableCollection<WidgetControl>();
+        public static ObservableCollection<WidgetControl> widgets = new ObservableCollection<WidgetControl>();
 
 
         public static Model.AppConfig? appConfig;
@@ -35,7 +31,7 @@ namespace SideBarDemo
 
             if (File.Exists(CONFIG_FILE))
             {
-                appConfig = JsonConvert.DeserializeObject<Model.AppConfig>(File.ReadAllText(CONFIG_FILE))??new Model.AppConfig();
+                appConfig = JsonConvert.DeserializeObject<Model.AppConfig>(File.ReadAllText(CONFIG_FILE)) ?? new Model.AppConfig();
             }
             else
             {

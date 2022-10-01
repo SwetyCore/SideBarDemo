@@ -1,4 +1,3 @@
-using Default.View;
 using PluginSdk;
 using System;
 using System.Collections.Generic;
@@ -48,8 +47,8 @@ namespace Default
 
     public class Class1 : IPlugin
     {
-        public Version version {get;} = new Version();
-        public string url { get;  } = "";
+        public Version version { get; } = new Version();
+        public string url { get; } = "";
         public string author { get; } = "";
 
         public List<cardInfo> cards { get; } = new List<cardInfo>()

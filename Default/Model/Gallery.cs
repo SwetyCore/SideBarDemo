@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Text;
 
 namespace Default.Model
 {
@@ -19,7 +16,7 @@ namespace Default.Model
                 if (File.Exists(file))
                 {
                     var content = File.ReadAllText(file);
-                    return JsonConvert.DeserializeObject<Config>(content)??new Config();
+                    return JsonConvert.DeserializeObject<Config>(content) ?? new Config();
                 }
                 else
                 {

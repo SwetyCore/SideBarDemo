@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Windows.Data;
 
 namespace Default.Convertor
@@ -22,7 +20,7 @@ namespace Default.Convertor
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value==true)
+            if ((bool)value == true)
             {
                 return Microsoft.Graph.TaskStatus.Completed;
             }
@@ -32,5 +30,5 @@ namespace Default.Convertor
             }
         }
     }
-    
+
 }

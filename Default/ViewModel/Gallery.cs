@@ -8,14 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Default.ViewModel
 {
-    partial class Gallery : ObservableRecipient,IRecipient<OnExitMsg>
+    partial class Gallery : ObservableRecipient, IRecipient<OnExitMsg>
     {
         Default.View.Gallery view;
         public Default.Model.Gallery.Config cfg;
@@ -23,7 +21,7 @@ namespace Default.ViewModel
         {
             this.view = view;
 
-            cfg=Model.Gallery.Config.Load(view.GetPluginConfigFilePath());
+            cfg = Model.Gallery.Config.Load(view.GetPluginConfigFilePath());
         }
 
         public List<string> Files = new List<string>();
@@ -39,13 +37,13 @@ namespace Default.ViewModel
             ".png",
             ".bmp",
             ".jpeg",
-            
+
         };
         [RelayCommand]
         private void SetTargetFolder()
         {
             var dl = new OpenFileDialog();
-            var ret =dl.ShowDialog();
+            var ret = dl.ShowDialog();
             if (ret == true)
             {
                 var folder = Path.GetDirectoryName(dl.FileName);
@@ -59,7 +57,7 @@ namespace Default.ViewModel
         public void InitFolder()
         {
             Files = new List<string>();
-            if (cfg.folder==null)
+            if (cfg.folder == null)
             {
                 return;
             }
@@ -78,7 +76,7 @@ namespace Default.ViewModel
 
         public void LoadImg(string f)
         {
-            if (f==null)
+            if (f == null)
             {
                 return;
             }
@@ -96,12 +94,12 @@ namespace Default.ViewModel
                     bitmapImage.BeginInit();
                     bitmapImage.StreamSource = new MemoryStream(bytes);
                     bitmapImage.EndInit();
-                    bitmapImage.DecodePixelWidth=800;
-                    bitmapImage.DecodePixelHeight=800;
+                    bitmapImage.DecodePixelWidth = 800;
+                    bitmapImage.DecodePixelHeight = 800;
                     Img = bitmapImage;
-                    
+
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     Growl.Error(ex.Message);
                 }

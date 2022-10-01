@@ -1,18 +1,7 @@
-﻿using PluginSdk;
+﻿using HandyControl.Controls;
+using PluginSdk;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Default.View
 {
@@ -50,8 +39,21 @@ namespace Default.View
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            vm.GetTasksAsync(
-            ((Microsoft.Graph.Entity)((object[])e.AddedItems)[0]).Id.ToString());
+            try
+            {
+                var id = ((Microsoft.Graph.Entity)((object[])e.AddedItems)[0]).Id.ToString();
+                if (id==null)
+                {
+                    return;
+                }
+                vm.selectedTaskListId = id;
+
+                vm.GetTasksAsync(vm.selectedTaskListId);
+            }
+            catch (Exception ex)
+            {
+                Growl.Error(ex.Message);
+            }
         }
     }
 }

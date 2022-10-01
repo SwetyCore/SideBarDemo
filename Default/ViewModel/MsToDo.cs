@@ -1,14 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Azure.Identity;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using HandyControl.Controls;
 using Microsoft.Graph;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
-using Azure.Identity;
 using System.Windows.Media;
-using HandyControl.Controls;
-using CommunityToolkit.Mvvm.Input;
+using System.Windows.Threading;
 
 namespace Default.ViewModel
 {
@@ -18,7 +16,7 @@ namespace Default.ViewModel
         //[ObservableProperty]
         public GraphServiceClient graphClient;
 
-        private string selectedTaskListId;
+        public string selectedTaskListId;
 
         [ObservableProperty]
         private bool isLogin = false;
@@ -39,9 +37,9 @@ namespace Default.ViewModel
         }
 
         [RelayCommand]
-        private void DoneTask(object o)
+        private void UpdateTask(object o)
         {
-            Task.Run(async() =>
+            Task.Run(async () =>
             {
 
                 var todoTask = o as TodoTask;
@@ -52,7 +50,7 @@ namespace Default.ViewModel
                 //GetTasksAsync(selectedTaskListId);
             });
         }
-        
+
 
         private void CreateCilent()
         {
@@ -85,7 +83,7 @@ namespace Default.ViewModel
         [RelayCommand]
         private void Login()
         {
-            Task.Run(async() =>
+            Task.Run(async () =>
             {
                 try
                 {
@@ -97,6 +95,10 @@ namespace Default.ViewModel
                     ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
                     HeadImage = (ImageSource)imageSourceConverter.ConvertFrom(stream);
 
+
+
+                    //graphClient.Me.Todo.Lists[selectedTaskListId].Tasks.
+                    //graphClient.Subscriptions.
                 }
                 catch (Exception ex)
                 {
@@ -104,6 +106,22 @@ namespace Default.ViewModel
                 }
 
             });
+        }
+
+        [RelayCommand]
+        private void Refresh()
+        {
+            Task.Run(async () =>
+            {
+
+                await GetListsAsync();
+                await GetTasksAsync();
+                Dispatcher.CurrentDispatcher.Invoke(() =>
+                {
+                    Growl.Info("列表更新成功！");
+                });
+            });
+
         }
 
         private async Task GetListsAsync()
@@ -117,12 +135,15 @@ namespace Default.ViewModel
             {
                 IsLogin = true;
             }
-            GetTasksAsync(selectedTaskListId);
+            GetTasksAsync();
         }
 
-        public async Task GetTasksAsync(string id)
+        public async Task GetTasksAsync(string? id = null)
         {
-            selectedTaskListId = id;
+            if (id == null)
+            {
+                id = selectedTaskListId;
+            }
             var tasks = await graphClient.Me.Todo.Lists[id].Tasks
                 .Request()
                 .GetAsync();

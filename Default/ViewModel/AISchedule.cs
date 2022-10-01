@@ -1,15 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using HandyControl.Controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Default.Model.AISchedule;
-using System.Windows;
 using System.IO;
-using HandyControl.Controls;
+using System.Linq;
+using static Default.Model.AISchedule;
 
 namespace Default.ViewModel
 {
@@ -83,7 +80,7 @@ namespace Default.ViewModel
 
                 CI = tr.data.courses.Where(x => IsIn(x.weeks.Split(','), week) && x.day == Week2Int(targetTime.DayOfWeek)).ToList();
 
-                if (CI.Count==0)
+                if (CI.Count == 0)
                 {
                     TableTip = "今日无课";
                 }

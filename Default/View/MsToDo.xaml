@@ -70,7 +70,15 @@
                     Margin="8,0,0,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    Visibility="{Binding IsLogin, Converter={StaticResource Boolean2VisibilityConverter}}">
+
+                    <Button
+                        Margin="4,0"
+                        BorderBrush="Transparent"
+                        Command="{Binding RefreshCommand}"
+                        Content="&#xF064;"
+                        FontFamily="{StaticResource MyRemixIcon}" />
                     <Border
                         Width="28"
                         Height="28"
@@ -98,12 +106,16 @@
                 <Grid Margin="0,0,0,0">
 
                     <ComboBox
-                        Margin="0,0,36,0"
+                        Margin="0,0,44,0"
                         DisplayMemberPath="DisplayName"
                         ItemsSource="{Binding TodoLists}"
                         SelectionChanged="ComboBox_SelectionChanged" />
 
-                    <Button HorizontalAlignment="Right" Content="+" />
+                    <Button
+                        HorizontalAlignment="Right"
+                        Content="&#xEF39;"
+                        FontFamily="{StaticResource MyRemixIcon}"
+                        FontSize="16" />
                 </Grid>
 
                 <ListBox
@@ -135,7 +147,7 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <CheckBox
-                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}, Path=DataContext.DoneTaskCommand}"
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}, Path=DataContext.UpdateTaskCommand}"
                                     CommandParameter="{Binding}"
                                     Content="{Binding Title}"
                                     IsChecked="{Binding Status, Converter={StaticResource TodoStatueToBool}}" />

@@ -1,18 +1,7 @@
 ﻿using PluginSdk;
-using PluginSdk.Control;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Default.View
 {
@@ -21,7 +10,7 @@ namespace Default.View
     /// </summary>
     public partial class Gallery : WidgetControl
     {
-        
+
         public override cardInfo ci => Cards.Gallery;
         ViewModel.Gallery vm;
         public Gallery(Guid g)
@@ -59,11 +48,11 @@ namespace Default.View
             var mi = sender as MenuItem;
             string size = mi.Header as string;
             var s = size.Split('×');
-            if (s.Length==2)
+            if (s.Length == 2)
             {
                 ResizeCard(int.Parse(s[0]) * 2, int.Parse(s[1]) * 2);
             }
-            vm.cfg.size = new System.Drawing.Size(int.Parse(s[0])*2, int.Parse(s[1])*2);
+            vm.cfg.size = new System.Drawing.Size(int.Parse(s[0]) * 2, int.Parse(s[1]) * 2);
 
         }
     }

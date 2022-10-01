@@ -393,6 +393,6 @@ namespace DockBar.Helper
             public const int WS_EX_TOOLWINDOW = 0x00000080;
         }
     }
-    
+
 
 }

@@ -1,21 +1,9 @@
-﻿using HandyControl.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Window = System.Windows.Window;
 
 namespace SideBarDemo
@@ -30,7 +18,7 @@ namespace SideBarDemo
         {
             InitializeComponent();
 
-            
+
         }
         protected override void OnSourceInitialized(EventArgs e)
         {
@@ -40,8 +28,8 @@ namespace SideBarDemo
             IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
             SetWindowLong(hWnd, (-20), 0x80);
 
-            vm =new ViewModel.SideBar();
-            
+            vm = new ViewModel.SideBar();
+
             DataContext = vm;
         }
 
@@ -64,7 +52,7 @@ namespace SideBarDemo
             }
         }
 
-        private bool PinWindow=false;
+        private bool PinWindow = false;
         private void root_Deactivated(object sender, EventArgs e)
         {
             if (PinWindow)

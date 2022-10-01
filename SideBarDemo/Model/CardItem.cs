@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PluginSdk;
+﻿using PluginSdk;
+using System;
 namespace SideBarDemo.Model
 {
     public class CardItem

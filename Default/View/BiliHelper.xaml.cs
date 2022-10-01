@@ -1,24 +1,14 @@
-﻿using Flurl.Http;
+﻿using Default.CWindow;
 using Flurl;
+using Flurl.Http;
+using HandyControl.Controls;
 using PluginSdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static Default.Model.BiliHelper;
 using System.Windows.Threading;
-using HandyControl.Controls;
-using Default.CWindow;
+using static Default.Model.BiliHelper;
 
 namespace Default.View
 {
@@ -44,8 +34,8 @@ namespace Default.View
 
         }
 
-        
-        
+
+
 
         public override void OnEnabled()
         {

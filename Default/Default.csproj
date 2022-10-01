@@ -9,12 +9,40 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\BiliHelper\lv0.png" />
+    <None Remove="Resources\BiliHelper\lv1.png" />
+    <None Remove="Resources\BiliHelper\lv2.png" />
+    <None Remove="Resources\BiliHelper\lv3.png" />
+    <None Remove="Resources\BiliHelper\lv4.png" />
+    <None Remove="Resources\BiliHelper\lv5.png" />
+    <None Remove="Resources\BiliHelper\lv6.png" />
     <None Remove="Resources\schedule-logo.png" />
     <None Remove="Resources\todo-blank.png" />
     <None Remove="Resources\todo-logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\BiliHelper\lv0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BiliHelper\lv1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BiliHelper\lv2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BiliHelper\lv3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BiliHelper\lv4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BiliHelper\lv5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BiliHelper\lv6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\todo-blank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -80,6 +108,8 @@
   </ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<!--<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Release\net6.0-windows\Plugins\Default&quot; /y/e" />-->
+
 		<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Debug\net6.0-windows\Plugins\Default&quot; /y/e" />
 	</Target>
 

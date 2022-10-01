@@ -1,6 +1,5 @@
 using PluginSdk.Control;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Controls;
@@ -21,7 +20,7 @@ namespace PluginSdk
 
         public abstract cardInfo ci { get; }
 
-        public void ResizeCard(int width_pix,int height_pix)
+        public void ResizeCard(int width_pix, int height_pix)
         {
             TilePanel.SetHeightPix(this, height_pix);
             TilePanel.SetWidthPix(this, width_pix);
@@ -57,8 +56,8 @@ namespace PluginSdk
     {
         public string name { get; }
         public Version version { get; }
-        public string url { get;  }
-        public string author { get;  }
+        public string url { get; }
+        public string author { get; }
         public List<cardInfo> cards { get; }
 
     }
