@@ -115,7 +115,6 @@ namespace Default.ViewModel
             {
 
                 await GetListsAsync();
-                await GetTasksAsync();
                 Dispatcher.CurrentDispatcher.Invoke(() =>
                 {
                     Growl.Info("列表更新成功！");

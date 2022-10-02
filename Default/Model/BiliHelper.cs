@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Default.Model
 {
@@ -1189,6 +1191,31 @@ namespace Default.Model
         }
 
         #endregion
+
+
+        public class Config
+        {
+            public string cookie { get; set; }
+
+
+            public static Config Load(string file)
+            {
+                if (File.Exists(file))
+                {
+                    var content = File.ReadAllText(file);
+                    return JsonConvert.DeserializeObject<Config>(content) ?? new Config();
+                }
+                else
+                {
+                    return new Config();
+                }
+            }
+
+            public void Save(string file)
+            {
+                File.WriteAllText(file, JsonConvert.SerializeObject(this));
+            }
+        }
 
     }
 }

@@ -82,6 +82,9 @@
     <Compile Update="View\MsToDo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\CountDown.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\TestCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +100,11 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MsToDo.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\CountDown.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

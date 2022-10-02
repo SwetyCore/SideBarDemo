@@ -35,9 +35,15 @@ namespace Default
         };
         internal static cardInfo MsToDo = new cardInfo()
         {
-            name = "Microsoft ToDo",
+            name = "Microsoft Todo",
             description = "微软待办卡片",
             mainView = typeof(View.MsToDo)
+        };
+        internal static cardInfo CountDown = new cardInfo()
+        {
+            name = "倒数日",
+            description = "倒数日卡片",
+            mainView = typeof(View.CountDown)
         };
     }
 
@@ -58,6 +64,7 @@ namespace Default
             Cards.BiliHelper,
             Cards.Gallery,
             Cards.MsToDo,
+            Cards.CountDown,
         };
 
 

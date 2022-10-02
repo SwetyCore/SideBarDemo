@@ -1,16 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using PluginSdk.Message;
 using System;
 using static Default.Model.BiliHelper;
 
 namespace Default.ViewModel
 {
-    internal class BiliHelper : ObservableObject
+    internal class BiliHelper : ObservableRecipient, IRecipient<OnExitMsg>
     {
 
-
-        public BiliHelper(Guid g)
+        public Model.BiliHelper.Config cfg;
+        View.BiliHelper view;
+        public BiliHelper(View.BiliHelper view)
         {
-
+            this.view = view;
         }
 
 
@@ -41,11 +44,11 @@ namespace Default.ViewModel
 
         private string _cookie;
 
-        public string Cookie
-        {
-            get { return _cookie; }
-            set { SetProperty(ref _cookie, value); }
-        }
+        //public string Cookie
+        //{
+        //    get { return _cookie; }
+        //    set { SetProperty(ref _cookie, value); }
+        //}
 
 
         private bool _loading;
@@ -56,9 +59,11 @@ namespace Default.ViewModel
             set { SetProperty(ref _loading, value); }
         }
 
+        public void Receive(OnExitMsg message)
+        {
+            cfg.Save(view.GetPluginConfigFilePath());
 
-
-
+        }
     }
 
 }

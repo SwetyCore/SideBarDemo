@@ -19,17 +19,19 @@ namespace Default.View
     public partial class BiliHelper : WidgetControl
     {
 
+
+
         DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 30, 0) };
         ViewModel.BiliHelper vm;
         public override cardInfo ci => Cards.BiliHelper;
-        String Cookie = "";
+        //String Cookie = "";
         public BiliHelper(Guid g)
         {
             InitializeComponent();
 
             PluginGuid = g;
 
-            vm = new ViewModel.BiliHelper(g);
+            vm = new ViewModel.BiliHelper(this);
 
 
         }
@@ -41,9 +43,15 @@ namespace Default.View
         {
             DataContext = vm;
             vm.Loading = true;
-            timer.Start();
+
+            vm.IsActive = true;
+
+
+            vm.cfg = Model.BiliHelper.Config.Load(GetPluginConfigFilePath());
+
 
             DataUpdate(false);
+
             timer.Tick += (object? sender, EventArgs e) =>
             {
                 DataUpdate();
@@ -53,7 +61,7 @@ namespace Default.View
 
         public override void OnDisabled()
         {
-
+            timer.Stop();
         }
         public static string GetMidFromCookie(string cookie)
         {
@@ -72,6 +80,7 @@ namespace Default.View
         /// </summary>
         public async void DataUpdate(bool tip = true)
         {
+            var Cookie = vm.cfg.cookie;
             if (Cookie != null && Cookie != "" && GetMidFromCookie(Cookie) != "")
             {
                 try
@@ -80,16 +89,20 @@ namespace Default.View
                     string url = api.SetQueryParams(new { mid = GetMidFromCookie(Cookie), photo = "true" });
                     vm.Card = await url.GetJsonAsync<web_interface_card.Root>();
                     vm.Loading = false;
+
+                    timer.Start();
                 }
                 catch (Exception ex)
                 {
                     Growl.Error(ex.Message);
+                    timer.Stop();
                 }
             }
             else if (tip)
             {
                 Growl.Error("哔哩哔哩:无效的Cookie!");
                 vm.Loading = true;
+                timer.Stop();
             }
         }
 
@@ -97,7 +110,7 @@ namespace Default.View
         {
             var dl = new CookieGetter("https://passport.bilibili.com/login");
             dl.ShowDialog();
-            Cookie = dl.Cookie;
+            vm.cfg.cookie = dl.Cookie;
             DataUpdate(true);
         }
     }

@@ -110,8 +110,8 @@
         <Border
             Name="container"
             Grid.Column="1"
-            Margin="4"
-            Padding="4"
+            Margin="12"
+            Padding="0"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1"
             CornerRadius="8">

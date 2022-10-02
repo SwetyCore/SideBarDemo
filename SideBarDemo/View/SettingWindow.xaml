@@ -32,11 +32,9 @@
                 Margin="14,24,14,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="1"
-                CornerRadius="24">
+                BorderThickness="1">
                 <Border.Background>
-                    <SolidColorBrush Color="{DynamicResource SecondaryRegionColor}" />
+                    <ImageBrush ImageSource="../Resources/StartIcon.ico" />
                 </Border.Background>
             </Border>
 
