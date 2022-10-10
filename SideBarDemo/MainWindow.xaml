@@ -12,17 +12,17 @@
     xmlns:viewmodel="clr-namespace:SideBarDemo.ViewModel"
     Name="root"
     Title="MainWindow"
-    Width="12"
+    Width="632"
     Height="450"
     d:DataContext="{d:DesignInstance Type=viewmodel:SideBar}"
-    d:Width="300"
     helper:DesktopAppBar.AppBar="None"
-    Background="Transparent"
+    AllowsTransparency="True"
+    Background="#AAFFFFFF"
     Deactivated="root_Deactivated"
-    Left="-4"
+    Left="8"
     MouseEnter="root_MouseEnter"
     ResizeMode="NoResize"
-    Top="0"
+    Top="8"
     Topmost="True"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -30,8 +30,8 @@
         <Storyboard x:Key="slide_in">
             <DoubleAnimation
                 Storyboard.TargetName="root"
-                Storyboard.TargetProperty="Width"
-                To="632"
+                Storyboard.TargetProperty="Left"
+                To="8"
                 Duration="00:00:0.3">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase />
@@ -50,8 +50,8 @@
         <Storyboard x:Key="slide_out">
             <DoubleAnimation
                 Storyboard.TargetName="root"
-                Storyboard.TargetProperty="Width"
-                To="12"
+                Storyboard.TargetProperty="Left"
+                To="-630"
                 Duration="00:00:0.3">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase />
@@ -61,7 +61,7 @@
                 Storyboard.TargetName="container"
                 Storyboard.TargetProperty="Opacity"
                 To="0"
-                Duration="00:00:0.3">
+                Duration="00:00:0.1">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase />
                 </DoubleAnimation.EasingFunction>
@@ -88,36 +88,8 @@
 
         </i:EventTrigger>-->
     </i:Interaction.Triggers>
-    <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" GlassFrameThickness="-1" />
-    </WindowChrome.WindowChrome>
-    <Grid HorizontalAlignment="Right">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <ScrollViewer
-            Grid.Column="1"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Panel.ZIndex="10"
-            VerticalScrollBarVisibility="Hidden">
-            <StackPanel
-                Margin="0,10,10,10"
-                VerticalAlignment="Top"
-                hc:Growl.GrowlParent="True" />
-        </ScrollViewer>
-        <Border
-            Name="container"
-            Grid.Column="1"
-            Margin="12"
-            Padding="0"
-            BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="1"
-            CornerRadius="8">
-            <Border.Background>
-                <SolidColorBrush Opacity="0.4" Color="{DynamicResource RegionColor}" />
-            </Border.Background>
+    <Grid>
+        <Border Name="container">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -160,9 +132,9 @@
                         <ItemsPanelTemplate>
                             <control:TilePanel
                                 TileCount="8"
-                                TileHeight="70"
+                                TileHeight="72"
                                 TileMargin="4"
-                                TileWidth="70" />
+                                TileWidth="72" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="clr-namespace:PluginSdk;assembly=PluginSdk"
     xmlns:viewmodel="clr-namespace:Default.ViewModel"
-    control:TilePanel.HeightPix="3"
+    control:TilePanel.HeightPix="4"
     control:TilePanel.WidthPix="4"
     d:DataContext="{d:DesignInstance Type=viewmodel:AISchedule}"
     d:DesignHeight="400"

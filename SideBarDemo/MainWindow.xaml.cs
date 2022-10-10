@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -23,11 +24,13 @@ namespace SideBarDemo
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            Height = SystemParameters.WorkArea.Height;
+            Height = SystemParameters.WorkArea.Height-16;
 
             IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
             SetWindowLong(hWnd, (-20), 0x80);
 
+            DockBar.Common.WindowAttribute.EnableRoundWindow(hWnd);
+            new DockBar.Common.WindowAccentCompositor(this).Composite(Color.FromArgb(0xAA, 0xFF, 0xFF, 0xFF));
             vm = new ViewModel.SideBar();
 
             DataContext = vm;
