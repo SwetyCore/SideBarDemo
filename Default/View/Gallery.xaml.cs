@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Default.View
 {
@@ -10,6 +11,7 @@ namespace Default.View
     /// </summary>
     public partial class Gallery : WidgetControl
     {
+        DispatcherTimer timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 10) };
 
         public override cardInfo ci => Cards.Gallery;
         ViewModel.Gallery vm;
@@ -33,6 +35,11 @@ namespace Default.View
 
 
 
+            timer.Tick += (object? sender, EventArgs e) =>
+            {
+                vm.Next();
+            };
+            timer.Start();
             //throw new NotImplementedException();
         }
 

@@ -45,12 +45,12 @@
                 </Grid.RowDefinitions>
                 <Grid>
                     <Border CornerRadius="8 8 0 0">
-                        <Border.Background>
+                        <!--<Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1.3">
                                 <GradientStop Offset="0" Color="{DynamicResource RegionColor}" />
                                 <GradientStop Offset="1" Color="Transparent" />
                             </LinearGradientBrush>
-                        </Border.Background>
+                        </Border.Background>-->
 
                         <StackPanel Margin="4" Orientation="Horizontal">
 

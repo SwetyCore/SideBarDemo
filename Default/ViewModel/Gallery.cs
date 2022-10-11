@@ -111,5 +111,19 @@ namespace Default.ViewModel
         {
             cfg.Save(view.GetPluginConfigFilePath());
         }
+
+        private int index = 0;
+        internal void Next()
+        {
+            if (index<=Files.Count-2)
+            {
+                index++;
+            }
+            else
+            {
+                index = 0;
+            }
+            LoadImg(Files[index]);
+        }
     }
 }

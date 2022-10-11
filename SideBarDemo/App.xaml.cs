@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HandyControl.Controls;
+using Newtonsoft.Json;
 using PluginSdk;
 using PluginSdk.Message;
 using SideBarDemo.Common;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
+using MessageBox = System.Windows.MessageBox;
 
 namespace SideBarDemo
 {
@@ -106,7 +108,7 @@ namespace SideBarDemo
             //MessageBox.Show("我们很抱歉，当前应用程序遇到一些问题，该操作已经终止，请进行重试，如果问题继续存在，请联系管理员.", "意外的操作", MessageBoxButton.OK, MessageBoxImage.Information);//这里通常需要给用户一些较为友好的提示，并且后续可能的操作
 
             //File.WriteAllText("err.log", JsonConvert.SerializeObject(e.Exception));
-
+            Growl.Error(e.Exception.Message);
             //Environment.Exit(-1);
         }
     }

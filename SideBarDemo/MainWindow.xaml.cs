@@ -38,9 +38,13 @@ namespace SideBarDemo
 
         private void root_MouseEnter(object sender, MouseEventArgs e)
         {
-            Activate();
+            //Topmost = true;
+            //Activate();
+            //Focus();
+            SwitchToThisWindow(new WindowInteropHelper(this).EnsureHandle(),true);
         }
-
+        [DllImport("user32")]         
+        static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PinWindow = !PinWindow;
@@ -66,6 +70,7 @@ namespace SideBarDemo
             {
                 Storyboard? slide_out = FindResource("slide_out") as Storyboard;
                 slide_out?.Begin();
+                
             }
         }
 
