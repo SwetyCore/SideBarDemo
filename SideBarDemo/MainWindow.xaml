@@ -71,14 +71,14 @@
         </Storyboard>
     </Window.Resources>
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseEnter">
-            <!--<i:ChangePropertyAction
+        <!--<i:EventTrigger EventName="MouseEnter">-->
+        <!--<i:ChangePropertyAction
                 PropertyName="Width"
                 TargetName="root"
                 Value="632" />-->
-            <i:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource slide_in}" />
+        <!--<i:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource slide_in}" />-->
 
-        </i:EventTrigger>
+        <!--</i:EventTrigger>-->
         <!--<i:EventTrigger EventName="Deactivated">
 
             <i:ChangePropertyAction

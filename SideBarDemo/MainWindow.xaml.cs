@@ -41,7 +41,12 @@ namespace SideBarDemo
             //Topmost = true;
             //Activate();
             //Focus();
+            Storyboard? slide_in = FindResource("slide_in") as Storyboard;
+            slide_in?.Begin();
+
             SwitchToThisWindow(new WindowInteropHelper(this).EnsureHandle(),true);
+
+            Activate();
         }
         [DllImport("user32")]         
         static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
