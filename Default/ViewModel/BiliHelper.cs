@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using PluginSdk.Message;
-using System;
 using static Default.Model.BiliHelper;
 
 namespace Default.ViewModel

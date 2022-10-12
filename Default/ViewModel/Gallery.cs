@@ -115,7 +115,7 @@ namespace Default.ViewModel
         private int index = 0;
         internal void Next()
         {
-            if (index<=Files.Count-2)
+            if (index <= Files.Count - 2)
             {
                 index++;
             }

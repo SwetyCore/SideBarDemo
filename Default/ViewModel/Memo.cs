@@ -1,9 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using PluginSdk.Message;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Default.ViewModel
 {
@@ -23,7 +20,7 @@ namespace Default.ViewModel
         public string Text
         {
             get { return cfg.text; }
-            set { SetProperty(ref cfg.text,value); }
+            set { SetProperty(ref cfg.text, value); }
         }
 
 

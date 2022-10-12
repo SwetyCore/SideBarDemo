@@ -42,7 +42,7 @@ namespace Default.View
             try
             {
                 var id = ((Microsoft.Graph.Entity)((object[])e.AddedItems)[0]).Id.ToString();
-                if (id==null)
+                if (id == null)
                 {
                     return;
                 }

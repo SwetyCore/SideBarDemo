@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Default.Convertor
 {
@@ -13,7 +10,7 @@ namespace Default.Convertor
         {
             var level = value.ToString();
             string image = "";
-            if (level!=null)
+            if (level != null)
             {
                 image = $"pack://application:,,,/Default;component/Resources/BiliHelper/lv{level}.png";
             }

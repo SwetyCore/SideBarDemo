@@ -51,6 +51,13 @@ namespace Default
             description = "便笺啦",
             mainView = typeof(View.Memo)
         };
+
+        internal static cardInfo FolderView = new cardInfo()
+        {
+            name = "文件夹",
+            description = "文件夹",
+            mainView = typeof(View.FolderView)
+        };
     }
 
 
@@ -72,6 +79,7 @@ namespace Default
             Cards.MsToDo,
             Cards.CountDown,
             Cards.Memo,
+            Cards.FolderView,
         };
 
 

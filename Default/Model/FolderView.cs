@@ -1,11 +1,22 @@
 ﻿using Newtonsoft.Json;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Default.Model
 {
-    internal class Memo
+    internal class FolderView
     {
+
+        public class FileItem
+        {
+
+            public string Name { get; set; }
+
+            public string Location { get; set; }
+
+            public BitmapSource Icon { get; set; }
+        }
         public class Config
         {
             public string text;
