@@ -85,6 +85,9 @@
     <Compile Update="View\CountDown.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Memo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\TestCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -108,6 +111,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Memo.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
     </Page>
     <Page Update="View\TestCard.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

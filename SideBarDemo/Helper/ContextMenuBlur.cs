@@ -9,9 +9,6 @@ namespace DockBar.Helper
     public class ContextMenuBlur
     {
 
-
-
-
         public static readonly DependencyProperty OnProperty =
             DependencyProperty.RegisterAttached(
                 "On",

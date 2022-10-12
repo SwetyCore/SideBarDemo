@@ -44,7 +44,7 @@ namespace SideBarDemo
             Storyboard? slide_in = FindResource("slide_in") as Storyboard;
             slide_in?.Begin();
 
-            SwitchToThisWindow(new WindowInteropHelper(this).EnsureHandle(),true);
+            //SwitchToThisWindow(new WindowInteropHelper(this).EnsureHandle(),true);
 
             Activate();
         }

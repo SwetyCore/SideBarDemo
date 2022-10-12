@@ -21,35 +21,45 @@
         </ResourceDictionary>
     </sdk:WidgetControl.Resources>
     <hc:Card hc:BorderElement.CornerRadius="8">
-        <hc:Card.Background>
-            <ImageBrush ImageSource="https://cdn.colorhub.me/-GtCwwYpYQE/rs:auto:0:500:0/g:ce/fn:colorhub/bG9jYWw6Ly8vODEvMzQvMzc2NGJlMjE5MTBhODQyOWJlYjdhN2E0ZjMzYzU4NDE2ZWUyODEzNC5qcGVn.webp" />
-        </hc:Card.Background>
-        <StackPanel Margin="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Border
+                Padding="4"
+                Background="#1b8ed1"
+                CornerRadius="8 8 0 0">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    Foreground="White">
+                    <Run Text="距" />
+                    <Run Text="xxxxxx" />
+                    <Run Text="还有" />
+                </TextBlock>
+            </Border>
             <TextBlock
-                FontSize="16"
-                Foreground="#5789a6"
-                Text="测试事件" />
-            <TextBlock>
-                <Run
-                    FontSize="64"
-                    Foreground="#E05789a6"
-                    Text="32" />
-                <Run
-                    FontSize="20"
-                    Foreground="#c5d6da"
-                    Text="天" />
-            </TextBlock>
-            <!--<ProgressBar
-                hc:BorderElement.CornerRadius="10"
-                Background="{DynamicResource SecondaryRegionBrush}"
-                Value="20" />-->
-
-            <TextBlock Margin="0,4" Foreground="#5789a6">
-                <Run FontWeight="Bold" Text="32" />
-                <Run Text="/" />
-                <Run Text="365" />
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="60"
+                FontWeight="Bold">
+                <Run Text="233" />
             </TextBlock>
 
-        </StackPanel>
+            <Border
+                Grid.Row="2"
+                Background="#f3f3f3"
+                CornerRadius="0 0 8 8">
+                <TextBlock
+                    Padding="4"
+                    HorizontalAlignment="Center"
+                    Foreground="Gray"
+                    Text="2022-12-23" />
+
+            </Border>
+        </Grid>
     </hc:Card>
 </sdk:WidgetControl>

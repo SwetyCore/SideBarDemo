@@ -45,6 +45,12 @@ namespace Default
             description = "µπ ˝»’ø®∆¨",
             mainView = typeof(View.CountDown)
         };
+        internal static cardInfo Memo = new cardInfo()
+        {
+            name = "±„º„",
+            description = "±„º„¿≤",
+            mainView = typeof(View.Memo)
+        };
     }
 
 
@@ -65,6 +71,7 @@ namespace Default
             Cards.Gallery,
             Cards.MsToDo,
             Cards.CountDown,
+            Cards.Memo,
         };
 
 
