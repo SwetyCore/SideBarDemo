@@ -129,7 +129,10 @@
                     Grid.Row="1"
                     MinWidth="600"
                     AllowDrop="True"
-                    ItemsSource="{Binding widgets}">
+                    Drop="LBoxSort_OnDrop"
+                    ItemsSource="{Binding widgets}"
+                    PreviewMouseDown="LBoxSort_PreviewMouseDown"
+                    PreviewMouseMove="LBoxSort_OnPrevewMouseMove">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <control:TilePanel
