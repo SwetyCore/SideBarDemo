@@ -1,11 +1,8 @@
-﻿using HandyControl.Controls;
-using PluginSdk;
+﻿using PluginSdk;
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -30,7 +27,7 @@ namespace SideBarDemo
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            Height = SystemParameters.WorkArea.Height-16;
+            Height = SystemParameters.WorkArea.Height - 16;
 
             IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
             SetWindowLong(hWnd, (-20), 0x80);
@@ -93,7 +90,7 @@ namespace SideBarDemo
             {
                 Storyboard? slide_out = FindResource("slide_out") as Storyboard;
                 slide_out?.Begin();
-                
+
             }
         }
 
@@ -137,7 +134,7 @@ namespace SideBarDemo
                 while (obj != null)
                 {
                     T wc = obj as T;
-                    if (wc!=null)
+                    if (wc != null)
                         return obj as T;
 
                     obj = VisualTreeHelper.GetParent(obj);
@@ -172,8 +169,8 @@ namespace SideBarDemo
             }
             vm.widgets.Remove(sourcePerson as WidgetControl);
             vm.widgets.Insert(LBoxSort.Items.IndexOf(targetPerson), sourcePerson as WidgetControl);
-            
-        
+
+
         }
 
         private void LBoxSort_OnPrevewMouseMove(object sender, MouseEventArgs e)
@@ -182,7 +179,7 @@ namespace SideBarDemo
             {
                 var n_pos = e.GetPosition(this);
 
-                if (n_pos==old_Pos)
+                if (n_pos == old_Pos)
                 {
                     e.Handled = false;
                     return;
