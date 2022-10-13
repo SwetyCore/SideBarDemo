@@ -16,6 +16,9 @@
     <None Remove="Resources\BiliHelper\lv4.png" />
     <None Remove="Resources\BiliHelper\lv5.png" />
     <None Remove="Resources\BiliHelper\lv6.png" />
+    <None Remove="Resources\genshin-helper\bg_widget_genshin.png" />
+    <None Remove="Resources\genshin-helper\btn_bg_follow_login.png" />
+    <None Remove="Resources\genshin-helper\logo_widget_genshin.png" />
     <None Remove="Resources\schedule-logo.png" />
     <None Remove="Resources\todo-blank.png" />
     <None Remove="Resources\todo-logo.png" />
@@ -43,6 +46,9 @@
     <Resource Include="Resources\BiliHelper\lv6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\genshin-helper\bg_widget_genshin.png" />
+    <Resource Include="Resources\genshin-helper\btn_bg_follow_login.png" />
+    <Resource Include="Resources\genshin-helper\logo_widget_genshin.png" />
     <Resource Include="Resources\todo-blank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -91,6 +97,9 @@
     <Compile Update="View\FolderView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\GenshinHelper.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\TestCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -123,6 +132,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\GenshinHelper.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\TestCard.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
@@ -132,7 +145,7 @@
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Release\net6.0-windows\Plugins\Default&quot; /y/e" />
 
-		<!--<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Debug\net6.0-windows\Plugins\Default&quot; /y/e" />-->
+		<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Debug\net6.0-windows\Plugins\Default&quot; /y/e" />
 	</Target>
 
 </Project>

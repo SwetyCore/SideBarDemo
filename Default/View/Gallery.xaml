@@ -28,7 +28,7 @@
             RenderOptions.BitmapScalingMode="HighQuality"
             SnapsToDevicePixels="True">
             <Border.Background>
-                <ImageBrush ImageSource="{Binding Img}" Stretch="UniformToFill" />
+                <ImageBrush ImageSource="{Binding Img}" Stretch="Uniform" />
             </Border.Background>
             <Grid>
                 <Grid.ContextMenu>

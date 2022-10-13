@@ -168,7 +168,7 @@ namespace SideBarDemo
                 return;
             }
             vm.widgets.Remove(sourcePerson as WidgetControl);
-            vm.widgets.Insert(LBoxSort.Items.IndexOf(targetPerson), sourcePerson as WidgetControl);
+            vm.widgets.Insert(vm.widgets.IndexOf(targetPerson), sourcePerson as WidgetControl);
 
 
         }

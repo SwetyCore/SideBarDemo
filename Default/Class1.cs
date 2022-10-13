@@ -58,6 +58,12 @@ namespace Default
             description = "文件夹",
             mainView = typeof(View.FolderView)
         };
+        internal static cardInfo GenshinHelper= new cardInfo()
+        {
+            name = "原神战绩查看",
+            description = "查看原神战绩",
+            mainView = typeof(View.GenshinHelper)
+        };
     }
 
 
@@ -80,6 +86,7 @@ namespace Default
             Cards.CountDown,
             Cards.Memo,
             Cards.FolderView,
+            Cards.GenshinHelper,
         };
 
 
