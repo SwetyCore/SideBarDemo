@@ -51,11 +51,11 @@ namespace SideBarDemo
             slide_in?.Begin();
 
             //SwitchToThisWindow(new WindowInteropHelper(this).EnsureHandle(),true);
-
-            Activate();
+            if (!IsFocused)
+            {
+                setForeground();
+            }
         }
-        [DllImport("user32")]         
-        static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PinWindow = !PinWindow;
@@ -69,6 +69,18 @@ namespace SideBarDemo
 
             }
         }
+
+        void setForeground()
+        {
+            int hForeWnd = GetForegroundWindow();
+            int dwForeID = GetWindowThreadProcessId(hForeWnd, 0);
+            int dwCurID = GetCurrentThreadId();
+            AttachThreadInput(dwCurID, dwForeID, true);
+            this.Activate();
+            AttachThreadInput(dwCurID, dwForeID, false);
+        }
+
+
 
         private bool PinWindow = false;
         private void root_Deactivated(object sender, EventArgs e)
@@ -94,12 +106,29 @@ namespace SideBarDemo
 
 
 
-
+        #region Win32导入
 
         [DllImport("user32.dll")]
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
+        [DllImport("user32.dll")]
+        private static extern int GetForegroundWindow();
+        [DllImport("user32.dll")]
+        private static extern int GetWindowThreadProcessId(int hwnd, int lpdwProcessId);
+        [DllImport("kernel32.dll")]
+        private static extern int GetCurrentThreadId();
+        [DllImport("user32.dll")]
+        private static extern int AttachThreadInput(int idAttach, int idAttachTo, bool fAttach);
 
 
+        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
+        public static extern int SystemParametersInfo(int uAction, int uParam, IntPtr lpvParam, int fuWinIni);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);//设置此窗体为活动窗体
+
+        #endregion
+
+        #region 拖拽排序
         internal static class Utils
         {
             //根据子元素查找父元素
@@ -116,7 +145,6 @@ namespace SideBarDemo
                 return null;
             }
         }
-
         private void LBoxSort_OnDrop(object sender, DragEventArgs e)
         {
             var pos = e.GetPosition(LBoxSort);
@@ -179,11 +207,14 @@ namespace SideBarDemo
                 e.Handled = false;
             }
         }
+
         private System.Windows.Point old_Pos;
         private void LBoxSort_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             old_Pos = e.GetPosition(this);
         }
+
+        #endregion
     }
 
 

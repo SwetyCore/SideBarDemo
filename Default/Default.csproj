@@ -130,9 +130,9 @@
   </ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<!--<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Release\net6.0-windows\Plugins\Default&quot; /y/e" />-->
+		<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Release\net6.0-windows\Plugins\Default&quot; /y/e" />
 
-		<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Debug\net6.0-windows\Plugins\Default&quot; /y/e" />
+		<!--<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir)SideBarDemo\bin\Debug\net6.0-windows\Plugins\Default&quot; /y/e" />-->
 	</Target>
 
 </Project>
