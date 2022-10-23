@@ -65,10 +65,7 @@
                             <ImageBrush ImageSource="{Binding Card.data.card.face}" />
                         </Border.Background>
                     </Border>
-                    <StackPanel
-                        Margin="10,0"
-                        VerticalAlignment="Bottom"
-                        TextOptions.TextFormattingMode="Display">
+                    <StackPanel Margin="10,0" VerticalAlignment="Bottom">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 HorizontalAlignment="Left"

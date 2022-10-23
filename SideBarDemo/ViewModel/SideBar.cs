@@ -8,7 +8,8 @@ namespace SideBarDemo.ViewModel
 {
     partial class SideBar : ObservableObject
     {
-
+        [ObservableProperty]
+        private string time;
         public ObservableCollection<WidgetControl> widgets
         {
             get { return App.widgets; }

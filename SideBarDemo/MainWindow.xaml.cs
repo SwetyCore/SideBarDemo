@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 using Color = System.Drawing.Color;
 using Window = System.Windows.Window;
 
@@ -18,12 +19,21 @@ namespace SideBarDemo
     public partial class MainWindow : Window
     {
         ViewModel.SideBar vm;
+
+        DispatcherTimer t = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
-
-
+            t.Interval = new TimeSpan(0, 0, 1);
+            t.Tick += (a, b) =>
+            {
+                vm.Time = DateTime.Now.ToString("HH:mm");
+            };
+            t.Start();
         }
+
+
+
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);

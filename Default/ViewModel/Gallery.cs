@@ -123,7 +123,15 @@ namespace Default.ViewModel
             {
                 index = 0;
             }
-            LoadImg(Files[index]);
+            try
+            {
+
+                LoadImg(Files[index]);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

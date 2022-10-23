@@ -10,13 +10,13 @@ namespace DGP.Genshin.GamebarWidget.Model
             CookieValue = cookieValue;
         }
 
-        public string DisplayName 
-        { 
-            get 
+        public string DisplayName
+        {
+            get
             {
                 IDictionary<string, string> dict = GetCookiePairs(CookieValue);
                 return dict.TryGetValue("account_id", out string account) ? account : "无效的Cookie";
-            } 
+            }
         }
 
         public string CookieValue { get; }

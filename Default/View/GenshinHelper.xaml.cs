@@ -2,7 +2,6 @@
 using DGP.Genshin.GamebarWidget.MiHoYoAPI;
 using DGP.Genshin.GamebarWidget.Model;
 using HandyControl.Controls;
-using Microsoft.IdentityModel.Tokens;
 using PluginSdk;
 using System;
 using System.Collections.Generic;

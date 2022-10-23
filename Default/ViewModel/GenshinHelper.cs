@@ -2,13 +2,10 @@
 using CommunityToolkit.Mvvm.Messaging;
 using DGP.Genshin.GamebarWidget.Model;
 using PluginSdk.Message;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Default.ViewModel
 {
-    partial class GenshinHelper:ObservableRecipient,IRecipient<OnExitMsg>
+    partial class GenshinHelper : ObservableRecipient, IRecipient<OnExitMsg>
     {
         View.GenshinHelper view;
         public GenshinHelper(View.GenshinHelper view)
@@ -16,7 +13,7 @@ namespace Default.ViewModel
             this.view = view;
             IsActive = true;
             view.cfg = Model.GenshinHelper.Config.Load(view.GetPluginConfigFilePath());
-            
+
         }
         private RoleAndNote _roleAndNote;
 

@@ -11,7 +11,6 @@
     control:TilePanel.WidthPix="2"
     d:DesignHeight="150"
     d:DesignWidth="150"
-    TextOptions.TextFormattingMode="Ideal"
     mc:Ignorable="d">
     <sdk:WidgetControl.Resources>
         <ResourceDictionary>

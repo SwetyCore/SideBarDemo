@@ -58,7 +58,7 @@ namespace Default
             description = "文件夹",
             mainView = typeof(View.FolderView)
         };
-        internal static cardInfo GenshinHelper= new cardInfo()
+        internal static cardInfo GenshinHelper = new cardInfo()
         {
             name = "原神战绩查看",
             description = "查看原神战绩",

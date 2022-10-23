@@ -39,17 +39,17 @@ namespace DGP.Genshin.GamebarWidget.MiHoYoAPI
                     string day;
                     switch (totalDays)
                     {
-                        case 0: 
-                            day = "今天"; 
+                        case 0:
+                            day = "今天";
                             break;
-                        case 1: 
-                            day = "明天"; 
+                        case 1:
+                            day = "明天";
                             break;
-                        case 2: 
-                            day = "后天"; 
+                        case 2:
+                            day = "后天";
                             break;
-                        default: 
-                            day = $"{totalDays}天"; 
+                        default:
+                            day = $"{totalDays}天";
                             break;
                     };
                     return $"将于 {day} {tt:HH:mm} 完全恢复";
