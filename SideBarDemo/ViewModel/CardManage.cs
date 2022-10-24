@@ -9,7 +9,9 @@ namespace SideBarDemo.ViewModel
     partial class CardManage : ObservableObject
     {
 
-
+        public CardManage()
+        {
+        }
 
         public ObservableCollection<WidgetControl> widgets
         {

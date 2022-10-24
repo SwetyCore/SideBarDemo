@@ -12,15 +12,15 @@ namespace SideBarDemo.Common
             [DllImport("User32.dll", CharSet = CharSet.Auto)]
             public static extern int RegisterWindowMessage(string msg);
 
-        //取得Shell窗口句柄函数 
-        [DllImport("user32.dll")] 
-        public static extern IntPtr GetShellWindow();
-        //取得桌面窗口句柄函数 
-        [DllImport("user32.dll")]
-        public static extern IntPtr GetDesktopWindow();
-        //取得前台窗口句柄函数 
-        [DllImport("user32.dll")]
-        public static extern IntPtr GetForegroundWindow();
+            //取得Shell窗口句柄函数 
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetShellWindow();
+            //取得桌面窗口句柄函数 
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetDesktopWindow();
+            //取得前台窗口句柄函数 
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetForegroundWindow();
         }
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT

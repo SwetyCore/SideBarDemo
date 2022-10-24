@@ -1,5 +1,4 @@
 ﻿using PluginSdk;
-using SideBarDemo.Common;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -59,6 +58,13 @@ namespace SideBarDemo
         protected override void OnClosing(CancelEventArgs e)
         {
             RegisterAppBar(true);
+
+
+            App.appConfig.instances = new System.Collections.Generic.Dictionary<Guid, string>();
+            foreach (var item in vm.widgets)
+            {
+                App.appConfig.instances.Add(item.PluginGuid, item.ci.mainView.FullName);
+            }
 
             base.OnClosing(e);
         }
