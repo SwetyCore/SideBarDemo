@@ -1,5 +1,7 @@
 ﻿using PluginSdk;
+using SideBarDemo.Common;
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -8,6 +10,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using static SideBarDemo.Common.FullScreenChecker;
 using Color = System.Drawing.Color;
 using Window = System.Windows.Window;
 
@@ -47,6 +50,75 @@ namespace SideBarDemo
             vm = new ViewModel.SideBar();
 
             DataContext = vm;
+
+            RegisterAppBar(false);
+            var hs = PresentationSource.FromVisual(this) as HwndSource;
+            hs.AddHook(new HwndSourceHook(WndProc));
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            RegisterAppBar(true);
+
+            base.OnClosing(e);
+        }
+
+        public void RegisterAppBar(bool registered)
+        {
+            APPBARDATA abd = new APPBARDATA();
+            abd.cbSize = Marshal.SizeOf(abd);
+            IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
+
+            abd.hWnd = hWnd;
+            if (!registered)
+            {
+                //register   
+                uCallBackMsg = APIWrapper.RegisterWindowMessage("APPBARMSG_SC_HELPER");
+                abd.uCallbackMessage = uCallBackMsg;
+                uint ret = APIWrapper.SHAppBarMessage((int)ABMsg.ABM_NEW, ref abd);
+            }
+            else
+            {
+                APIWrapper.SHAppBarMessage((int)ABMsg.ABM_REMOVE, ref abd);
+            }
+
+        }
+
+        bool RunningFullScreenApp = false;
+        private IntPtr desktopHandle;
+        private IntPtr shellHandle;
+        int uCallBackMsg;
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+
+            if (msg == uCallBackMsg)
+            {
+                switch (wParam.ToInt32())
+                {
+                    case (int)ABNotify.ABN_FULLSCREENAPP:
+                        {
+                            IntPtr hWnd = APIWrapper.GetForegroundWindow();
+                            //判断当前全屏的应用是否是桌面
+                            if (hWnd.Equals(desktopHandle) || hWnd.Equals(shellHandle))
+                            {
+                                RunningFullScreenApp = false;
+                                break;
+                            }
+                            //判断是否全屏
+                            if ((int)lParam == 1)
+                                this.RunningFullScreenApp = true;
+                            else
+                                this.RunningFullScreenApp = false;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
+
+            return IntPtr.Zero;
+
         }
 
         private void root_MouseEnter(object sender, MouseEventArgs e)
@@ -54,6 +126,11 @@ namespace SideBarDemo
             //Topmost = true;
             //Activate();
             //Focus();
+
+            if (RunningFullScreenApp)
+            {
+                return;
+            }
             Storyboard? slide_in = FindResource("slide_in") as Storyboard;
             slide_in?.Begin();
 
