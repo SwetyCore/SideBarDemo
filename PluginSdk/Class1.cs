@@ -2,15 +2,22 @@ using PluginSdk.Control;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace PluginSdk
 {
     public abstract class WidgetControl : UserControl
     {
-        //public float w_width { get; set; }
-        //public float w_height { get; set; }
+        public DispatcherTimer timer;
+        public WidgetControl()
+        {
+            //ResourceDictionary resourceDictionary = new ResourceDictionary();
+            //resourceDictionary.Source = new Uri("pack://application:,,,/Default;component/Style/index.xaml");
+            //Resources.MergedDictionaries.Add(resourceDictionary);
+        }
 
         public Guid PluginGuid { get; set; }
 

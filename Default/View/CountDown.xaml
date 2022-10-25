@@ -7,8 +7,10 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="clr-namespace:PluginSdk;assembly=PluginSdk"
+    xmlns:viewmodel="clr-namespace:Default.ViewModel"
     control:TilePanel.HeightPix="2"
     control:TilePanel.WidthPix="2"
+    d:DataContext="{d:DesignInstance Type=viewmodel:CountDown}"
     d:DesignHeight="150"
     d:DesignWidth="150"
     mc:Ignorable="d">
@@ -30,14 +32,30 @@
                 Padding="4"
                 Background="#1b8ed1"
                 CornerRadius="8 8 0 0">
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    FontSize="16"
-                    Foreground="White">
-                    <Run Text="距" />
-                    <Run Text="xxxxxx" />
-                    <Run Text="还有" />
-                </TextBlock>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Foreground="White">
+                        <Run Text="距" />
+                    </TextBlock>
+                    <TextBox
+                        MinWidth="32"
+                        Margin="0"
+                        Padding="2,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontSize="16"
+                        Foreground="White"
+                        Text="{Binding EventName, FallbackValue=XXXXX}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Foreground="White">
+                        <Run Text="还有" />
+                    </TextBlock>
+                </StackPanel>
             </Border>
             <TextBlock
                 Grid.Row="1"
@@ -45,18 +63,28 @@
                 VerticalAlignment="Center"
                 FontSize="60"
                 FontWeight="Bold">
-                <Run Text="233" />
+                <Run Text="{Binding LeftTime, Mode=OneWay, FallbackValue=N/A}" />
+                <Run
+                    FontSize="12"
+                    Foreground="{DynamicResource SecondaryTextBrush}"
+                    Text="{Binding Unit}" />
             </TextBlock>
 
             <Border
                 Grid.Row="2"
                 Background="#f3f3f3"
                 CornerRadius="0 0 8 8">
-                <TextBlock
+                <hc:DateTimePicker
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontSize="10"
+                    SelectedDateTime="{Binding TargetTime}" />
+                <!--<TextBlock
                     Padding="4"
                     HorizontalAlignment="Center"
                     Foreground="Gray"
-                    Text="2022-12-23" />
+                    Text="{Binding Target, FallbackValue=2022-12-23}" />-->
 
             </Border>
         </Grid>

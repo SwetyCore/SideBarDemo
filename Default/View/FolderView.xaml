@@ -31,7 +31,7 @@
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
                     <Setter Property="Margin" Value="2" />
-                    <!--<Setter Property="Template">
+                    <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                 <ContentPresenter
@@ -41,7 +41,7 @@
                                     ContentTemplate="{TemplateBinding ContentTemplate}" />
                             </ControlTemplate>
                         </Setter.Value>
-                    </Setter>-->
+                    </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
@@ -54,18 +54,23 @@
                                 <RowDefinition />
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
-                            <Image
-                                ToolTip="{Binding Name}"
-                                Width="40"
-                                Height="40"
-                                Source="{Binding Icon}" />
+                            <Button
+                                Width="64"
+                                Height="64"
+                                Padding="0"
+                                BorderThickness="0">
+                                <Image
+                                    Width="48"
+                                    Height="48"
+                                    Source="{Binding Icon}" />
+                            </Button>
                             <TextBlock
-                                Visibility="Collapsed"
                                 Grid.Row="1"
                                 HorizontalAlignment="Center"
                                 Text="{Binding Name}"
                                 TextAlignment="Left"
-                                TextWrapping="NoWrap" />
+                                TextWrapping="NoWrap"
+                                Visibility="Collapsed" />
                         </Grid>
                     </Border>
                 </DataTemplate>

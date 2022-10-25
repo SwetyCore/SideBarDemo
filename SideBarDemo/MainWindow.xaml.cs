@@ -1,4 +1,5 @@
-﻿using PluginSdk;
+﻿using HandyControl.Controls;
+using PluginSdk;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -280,8 +281,11 @@ namespace SideBarDemo
 
                 var pos = e.GetPosition(LBoxSort);
                 HitTestResult result = VisualTreeHelper.HitTest(LBoxSort, pos);
+                //var tb=Utils.FindVisualParent<TextBox>(result.VisualHit);
                 if (result == null)
                 {
+                    e.Handled = false;
+
                     return;
                 }
                 var listBoxItem = Utils.FindVisualParent<WidgetControl>(result.VisualHit);
